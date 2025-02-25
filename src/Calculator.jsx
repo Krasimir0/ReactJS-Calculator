@@ -1,42 +1,99 @@
 import { useState } from "react";
 import "./Calculator.css";
 
-const CalculatorNumbers = [
-  0,1,2,3,
-  4,5,6,
-  7,8,9,
-]
+const CalculatorNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const Actions = [
-  '+', '-', '/', '*', '=', 'C'
-]
+const Actions = ["+", "-", "/", "*", "=", "C"];
 
 export default function Calculator() {
-  let [number, setNumber] = useState('');
-  let [prevNumber, setPrevNumber] = useState('')
+  let [firstNumber, setNumber] = useState("");
+  let [secondNumber, setSecondNumber] = useState("");
+  let [action, setAction] = useState("");
+  const [result, setResult] = useState(null);
 
   const getNumberHandler = (pressedNumber) => {
-    setPrevNumber(() => {
-        prevNumber = pressedNumber; 
-      })
-      console.log(prevNumber);
-  }
+    if (action === "") {
+      setNumber((prevNum) => {
+       return prevNum + pressedNumber;
+      });
+    } else {
+      setSecondNumber((prevNum) => {
+       return prevNum + pressedNumber;
+      });
+    }
+  };
 
   const getActionHandler = (action) => {
-      console.log(action);
-      
-  }
+    if (action === "C") {
+      setNumber("");
+      setSecondNumber("");
+      setAction("");
+      setResult(null);
+    } else if (action === "=") {
+      let result = 0;
+      switch (action) {
+        case "+":
+          result = firstNumber + secondNumber;
+          console.log(result);
+          
+          break;
+        case "-":
+          result = firstNumber - secondNumber;
+          break;
+        case "/":
+          result = firstNumber / secondNumber;
+          break;
+        case "*":
+          result = firstNumber * secondNumber;
+          break;
+        default:
+          result = 0;
+          break;
+      }
+      setResult(result);
+      setNumber(result.toString());
+      setSecondNumber("");
+      setAction("");
+    } else {
+      setAction(action);
+    }
+  };
 
   return (
-    <>
-      <input type="text" readOnly value={number}/>
-       {CalculatorNumbers.map(number => (
-          <button className="button" key={number} onClick={() => {getNumberHandler(number)}}>{number}</button>
-       ))}
-       {Actions.map(action => (
-          <button className="button operator" key={action} onClick={() => {getActionHandler(action)}}>{action}</button>
-       ))}
-    </>
-    
+    <div className="calculator">
+      <div className="display">
+        <input
+          type="text"
+          readOnly
+          value={
+            result !== null
+              ? result
+              : `${firstNumber} ${action} ${secondNumber}`
+          }
+        />
+      </div>
+      {CalculatorNumbers.map((number) => (
+        <button
+          className="button"
+          key={number}
+          onClick={() => {
+            getNumberHandler(number);
+          }}
+        >
+          {number}
+        </button>
+      ))}
+      {Actions.map((action) => (
+        <button
+          className="button operator"
+          key={action}
+          onClick={() => {
+            getActionHandler(action);
+          }}
+        >
+          {action}
+        </button>
+      ))}
+    </div>
   );
 }
