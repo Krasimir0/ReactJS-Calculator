@@ -1,66 +1,87 @@
-/* Calculator Container */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #282c34;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
 .calculator {
-    width: 300px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #282c34;
-    color: white;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Display Screen */
-  .display input {
-    font-size: 1rem;
-    background-color: black;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: right;
-    border: 2px solid #444;
-  }
-  
-  
-  /* Button Grid */
-  .buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-  }
-  
-  /* Individual Buttons */
-  .button {
-    padding: 15px;
-    font-size: 1.2rem;
-    background-color: #61dafb;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .button:hover {
-    background-color: #4fa3d1;
-  }
-  
-  .button:active {
-    background-color: #1f78c1;
-  }
-  
-  /* Special Buttons */
-  .button.operator {
-    background-color: #ff9800;
-  }
-  
-  .button.operator:hover {
-    background-color: #e68900;
-  }
-  
-  .button.clear {
-    background-color: #f44336;
-  }
-  
-  .button.clear:hover {
-    background-color: #d32f2f;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  max-width: 320px;
+  text-align: center;
+}
+
+.display {
+  grid-column: span 4;
+  background: #333;
+  color: white;
+  text-align: right;
+  padding: 15px;
+  font-size: 1.8em;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border: 2px solid #444;
+}
+
+.display input {
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8em;
+  text-align: right;
+  outline: none;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.button {
+  padding: 15px;
+  font-size: 1.4em;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button:hover {
+  background: #4fa3d1;
+}
+
+.button:active {
+  background: #1f78c1;
+}
+
+.operator {
+  background: #ff9500;
+}
+
+.operator:hover {
+  background: #e08900;
+}
+
+.clear {
+  background: #f44336;
+}
+
+.clear:hover {
+  background: #d32f2f;
+}
+
+.button:nth-child(10) {
+  grid-column: span 2;
+}

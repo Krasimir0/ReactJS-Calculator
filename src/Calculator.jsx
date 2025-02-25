@@ -3,7 +3,7 @@ import "./Calculator.css";
 
 const CalculatorNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const Actions = ["+", "-", "/", "*", "=", "C"];
+const Actions = ["+", "-", "/", "x", "=", "C"];
 
 export default function Calculator() {
   let [firstNumber, setNumber] = useState("");
@@ -23,28 +23,27 @@ export default function Calculator() {
     }
   };
 
-  const getActionHandler = (action) => {
-    if (action === "C") {
+ 
+  const getActionHandler = (pressedAction) => {
+    if (pressedAction === "C") {
       setNumber("");
       setSecondNumber("");
       setAction("");
       setResult(null);
-    } else if (action === "=") {
+    } else if (pressedAction === "=") {
       let result = 0;
       switch (action) {
         case "+":
-          result = firstNumber + secondNumber;
-          console.log(result);
-          
+          result = Number(firstNumber) + Number(secondNumber);
           break;
         case "-":
-          result = firstNumber - secondNumber;
+          result = Number(firstNumber) - Number(secondNumber);
           break;
         case "/":
-          result = firstNumber / secondNumber;
+          result = Number(firstNumber) / Number(secondNumber);
           break;
-        case "*":
-          result = firstNumber * secondNumber;
+        case "x":
+          result = Number(firstNumber) * Number(secondNumber);
           break;
         default:
           result = 0;
@@ -55,7 +54,7 @@ export default function Calculator() {
       setSecondNumber("");
       setAction("");
     } else {
-      setAction(action);
+      setAction(pressedAction);
     }
   };
 
