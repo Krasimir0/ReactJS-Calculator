@@ -11,7 +11,13 @@ export default function Calculator() {
   let [action, setAction] = useState("");
   const [result, setResult] = useState(null);
 
+ 
+
   const getNumberHandler = (pressedNumber) => {
+    if (result !== null) {
+      setNumber(result);
+      setResult(null);
+    }
     if (action === "") {
       setNumber((prevNum) => {
        return prevNum + pressedNumber;
@@ -25,6 +31,10 @@ export default function Calculator() {
 
  
   const getActionHandler = (pressedAction) => {
+    if (result !== null) {
+      setNumber(result);
+      setResult(null);
+    }
     if (pressedAction === "C") {
       setNumber("");
       setSecondNumber("");
