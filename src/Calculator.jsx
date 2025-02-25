@@ -31,6 +31,10 @@ export default function Calculator() {
 
  
   const getActionHandler = (pressedAction) => {
+    if (firstNumber === "") {
+      return;
+    }
+
     if (result !== null) {
       setNumber(result);
       setResult(null);
